@@ -172,3 +172,9 @@ pre.code .c{color:#93A2B6}
 .credits div{background:var(--white);padding:16px;display:flex;flex-direction:column;gap:4px}
 .credits span{color:var(--body);font-size:15px}
 .note{font-size:14px;color:var(--muted);margin-top:10px}
+.split-small{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;align-items:center}
+.results{background:var(--ink);color:var(--ground);margin-top:32px;padding:28px;display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:24px}
+.results .rk{font-family:var(--mono);font-size:12px;letter-spacing:.06em;color:#9FB3E8;grid-column:1/-1;margin-bottom:-8px}
+.results div{display:flex;flex-direction:column;gap:4px}
+.results b{font-size:30px;line-height:1.1;font-weight:600}
+.results span{font-size:14px;color:#C9CFD8}
