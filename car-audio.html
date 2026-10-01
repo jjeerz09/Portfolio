@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<title>Car Audio System — Joelvis Jerez</title>
+<meta name="description" content="Designing, wiring and oscilloscope-tuning a multi-amplifier car audio system, including a Big 3 electrical upgrade and a custom horn cabinet.">
+</head>
+<body class="prose">
+
+<header class="site-header">
+<div class="wrap">
+<a class="brand" href="index.html">← JOELVIS JEREZ</a>
+<span class="kicker">PROJECT</span>
+</div>
+</header>
+
+<main>
+<section class="wrap p-hero">
+<div class="kicker">PERSONAL PROJECT</div>
+<h1>Car Audio System: Design, Wiring &amp; Tuning</h1>
+<p>I designed and wired a multi-amplifier audio system for my car, built a horn cabinet for it, upgraded the charging system to handle the load, and tuned it with an oscilloscope.</p>
+<div class="facts">
+<div><span class="kicker">POWER</span><strong>130 A alternator · Big 3 upgrade</strong></div>
+<div><span class="kicker">AMPLIFIERS</span><strong>1.2 kW mono (1 Ω) + 4-channel</strong></div>
+<div><span class="kicker">PROCESSING</span><strong>DSP 2.4S + EQs</strong></div>
+<div><span class="kicker">TUNING</span><strong class="hl">Oscilloscope gain setting</strong></div>
+</div>
+</section>
+<section class="wrap"><div class="pair hero-media" style="margin-top:40px">
+<figure><img class="shot" src="car-audio-system.jpg" alt="Car trunk with subwoofers and two tower speaker cabinets beside the car" width="853" height="1562"><figcaption>The full system: trunk subwoofers, the main tower, and the horn cabinet I built.</figcaption></figure>
+<figure><video src="car-audio-demo.mp4" poster="car-audio-poster.jpg" controls playsinline preload="metadata" aria-label="Video of the system playing"></video><figcaption>The system playing. Tap to hear it.</figcaption></figure>
+</div></section>
+
+<section class="wrap block">
+<h2>What I did</h2>
+<div class="credits">
+<div><b>Designed &amp; wired</b><span>The whole system, from the battery and alternator through the DSP to both amps and every speaker.</span></div>
+<div><b>Built</b><span>The horn cabinet.</span></div>
+<div><b>Modified</b><span>Mounted the tweeters in the main tower.</span></div>
+<div><b>Upgraded</b><span>The car's charging system with a Big 3 upgrade.</span></div>
+<div><b>Tuned</b><span>Amp gains and DSP settings, verified on an oscilloscope.</span></div>
+<div><b>Bought</b><span>The subwoofer enclosure and the main tower cabinet.</span></div>
+</div>
+</section>
+
+<section class="wrap block">
+<h2>How it grew</h2>
+<ol class="steps">
+<li><div><b>Stock radio</b><span>Started from the factory head unit's signal path.</span></div></li>
+<li><div><b>Second source</b><span>Added the head unit and EQs built into the tower, so the system can run from either source.</span></div></li>
+<li><div><b>Electrical upgrade</b><span>Did the Big 3: heavier-gauge cable from alternator to battery positive, battery negative to chassis, and engine block to chassis ground, so voltage holds up when the amps pull hard on bass notes.</span></div></li>
+<li><div><b>Expansion</b><span>Built the horn cabinet, mounted the tweeters, and wired everything through a DSP that splits the signal into tweeter, driver, mid and sub bands for a 1.2 kW mono sub amp and a 4-channel amp.</span></div></li>
+<li><div><b>Tuning</b><span>Set each amp's gain on an oscilloscope by finding the point where the signal begins to clip and staying just below it, instead of going by ear. That protects the speakers and gets clean power from every channel.</span></div></li>
+</ol>
+</section>
+
+<section class="wrap block last">
+<h2>The wiring diagram</h2>
+<p>I drew the full system before wiring it: power and fusing from the battery and 130 A alternator, remote turn-on from the ignition, the signal path through the DSP and splitters, and how each amp channel maps to the speakers, including the capacitors on the horns.</p>
+<figure><a class="zoom" href="car-audio-diagram.png"><img class="shot" src="car-audio-diagram.png" alt="Hand-drawn wiring diagram of the car audio system" width="1344" height="979" loading="lazy"></a><figcaption>My wiring diagram. Tap to open full size.</figcaption></figure>
+</section>
+</main>
+
+<footer class="p-footer">
+<div class="wrap">
+<a href="index.html">← All projects</a>
+<a class="mono" href="mailto:joelvis.jerez09@gmail.com">joelvis.jerez09@gmail.com</a>
+</div>
+</footer>
+
+</body>
+</html>

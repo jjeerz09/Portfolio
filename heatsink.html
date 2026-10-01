@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<title>Heat Sink Design &amp; CFD Validation — Joelvis Jerez</title>
+<meta name="description" content="Validating a SolidWorks Flow Simulation model against experiment and redesigning a plate-fin heat sink to run 8.1 K cooler.">
+</head>
+<body class="prose">
+
+<header class="site-header">
+<div class="wrap">
+<a class="brand" href="index.html">← JOELVIS JEREZ</a>
+<span class="kicker">PROJECT</span>
+</div>
+</header>
+
+<main>
+<section class="wrap p-hero">
+<div class="kicker">AME 20217 LAB II · UNIVERSITY OF NOTRE DAME · FALL 2025</div>
+<h1>Heat Sink Design &amp; CFD Validation</h1>
+<p>I validated a SolidWorks Flow Simulation model against a lab experiment, then used it to redesign an aluminum plate-fin heat sink for a lower base temperature.</p>
+<div class="facts">
+<div><span class="kicker">GOAL</span><strong>Lowest base temperature</strong></div>
+<div><span class="kicker">RESULT</span><strong class="hl">8.1 K cooler (314.5 → 306.4 K)</strong></div>
+<div><span class="kicker">VALIDATION</span><strong>Within 3.1 K of experiment</strong></div>
+<div><span class="kicker">TOOLS</span><strong>SolidWorks Flow Simulation · MATLAB</strong></div>
+</div>
+</section>
+<section class="wrap"><img class="shot hero-media" src="heatsink-final-design.jpg" alt="SolidWorks model of the final heat sink design: eight tall, thin fins on a base plate" width="1100" height="546"></section>
+
+<section class="wrap block">
+<h2>Step 1: Make the simulation trustworthy</h2>
+<p>In the lab, the heat sink sat on a neoprene base in still air with a thin-film heater underneath supplying 0.976 W, and a thermistor recorded the base temperature until it reached steady state. I rebuilt the same setup in SolidWorks Flow Simulation and ran a mesh refinement study from about 4,600 to 266,000 cells, treating the model as converged once the average temperature stopped changing by more than about 0.5 K.</p>
+<p>The level-4 mesh (about 58,000 cells) gave the best balance of accuracy and run time. It predicted 314.5 K against the measured 317.6 K, a 3.1 K difference, and its heat balance matched the experiment almost exactly.</p>
+<div class="pair">
+<figure><img class="shot" src="heatsink-validation-sim.jpg" alt="Simulated surface temperature of the original heat sink" width="1100" height="554" loading="lazy"><figcaption>Simulated surface temperature, refinement level 4.</figcaption></figure>
+<figure><img class="shot" src="heatsink-flir.jpg" alt="Thermal camera image of the heat sink during the experiment" width="640" height="480" loading="lazy"><figcaption>Thermal image of the real heat sink at steady state.</figcaption></figure>
+</div>
+<div class="table-wrap" style="margin-top:28px;max-width:640px">
+<table>
+<thead><tr><th>QUANTITY</th><th class="num">EXPERIMENT</th><th class="num">SIMULATION</th></tr></thead>
+<tbody>
+<tr><td>Heater input</td><td class="num">0.976 W</td><td class="num">0.976 W</td></tr>
+<tr><td>Heat dissipated</td><td class="num">0.936 W</td><td class="num">0.938 W</td></tr>
+<tr class="ours"><td>Average base temperature</td><td class="num">317.6 K</td><td class="num">314.5 K</td></tr>
+</tbody>
+</table>
+</div>
+</section>
+
+<section class="wrap block">
+<h2>Step 2: Redesign the fins</h2>
+<p>With a validated model, I iterated on the geometry, building each design on the last. Removing three fins and widening the spacing to 3.31 mm let air move more freely between them. A thicker base barely helped. The big gain came from making the fins much taller (46 mm) and thinner (1 mm), which added convective surface area without crowding the airflow.</p>
+<div class="figs">
+<figure><div class="chart"><svg viewBox="0 0 580 250" role="img" aria-labelledby="hs-t hs-d"><title id="hs-t">Average base temperature by design</title><desc id="hs-d">Lab heat sink 314.5 K, Design 1 310.4 K, Design 2 310.1 K, Design 3 306.4 K.</desc><text x="190" y="45" font-size="14" font-weight="600" fill="#14202E" text-anchor="end">Lab heat sink</text><text x="190" y="62" font-size="12" fill="#4A5563" text-anchor="end">45.8 g</text><rect x="200" y="30" width="289.0" height="28" fill="#B8BEC6"/><text x="497.0" y="49" font-size="14" font-weight="600" fill="#14202E">314.5 K</text><text x="190" y="97" font-size="14" font-weight="600" fill="#14202E" text-anchor="end">Design 1</text><text x="190" y="114" font-size="12" fill="#4A5563" text-anchor="end">44.5 g</text><rect x="200" y="82" width="175.9" height="28" fill="#B8BEC6"/><text x="383.9" y="101" font-size="14" font-weight="600" fill="#14202E">310.4 K</text><text x="190" y="149" font-size="14" font-weight="600" fill="#14202E" text-anchor="end">Design 2</text><text x="190" y="166" font-size="12" fill="#4A5563" text-anchor="end">45.8 g</text><rect x="200" y="134" width="169.0" height="28" fill="#B8BEC6"/><text x="377.0" y="153" font-size="14" font-weight="600" fill="#14202E">310.1 K</text><text x="190" y="201" font-size="14" font-weight="600" fill="#14202E" text-anchor="end">Design 3 (final)</text><text x="190" y="218" font-size="12" fill="#4A5563" text-anchor="end">57.0 g</text><rect x="200" y="186" width="65.8" height="28" fill="#1D4ED8"/><text x="273.8" y="205" font-size="14" font-weight="600" fill="#1D4ED8">306.4 K</text><text x="200" y="244" font-size="12" fill="#4A5563">Average base temperature (axis starts at 304 K)</text></svg></div><figcaption>The final design runs 8.1 K cooler. It is about 25% heavier, a deliberate trade for the larger fin area.</figcaption></figure>
+<figure><img class="shot" src="heatsink-final-sim.jpg" alt="Simulated surface temperature of the final heat sink design" width="1100" height="604" loading="lazy"><figcaption>Simulated temperature of the final design.</figcaption></figure>
+</div>
+</section>
+
+<section class="wrap block last">
+<h2>What I learned</h2>
+<p>A simulation is only useful once it has been checked against reality. Running the mesh study and matching the experiment first meant I could trust the small temperature differences between designs. The results also overturned my expectation: changing the base did little, while fin height and thickness drove almost all of the improvement.</p>
+</section>
+</main>
+
+<footer class="p-footer">
+<div class="wrap">
+<a href="index.html">← All projects</a>
+<a class="mono" href="mailto:joelvis.jerez09@gmail.com">joelvis.jerez09@gmail.com</a>
+</div>
+</footer>
+
+</body>
+</html>

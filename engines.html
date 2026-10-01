@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<title>Engine Design Studies — Joelvis Jerez</title>
+<meta name="description" content="Gas turbine design studies: a small UAV turbofan, a helium axial compressor stage, a 40 MW turboshaft and a JT9D reverse-engineering analysis.">
+</head>
+<body class="prose">
+
+<header class="site-header">
+<div class="wrap">
+<a class="brand" href="index.html">← JOELVIS JEREZ</a>
+<span class="kicker">PROJECT</span>
+</div>
+</header>
+
+<main>
+<section class="wrap p-hero">
+<div class="kicker">GAS TURBINES &amp; PROPULSION · NOTRE DAME LONDON · SPRING 2026</div>
+<h1>Engine Design Studies</h1>
+<p>Each unit of this course opened with a group design presentation. Across the semester our three-person team took on a new engine problem every few weeks, from reverse-engineering a production turbofan to sizing an engine and a compressor stage from scratch.</p>
+<div class="facts">
+<div><span class="kicker">TEAM</span><strong>Group 4 · 3 students</strong></div>
+<div><span class="kicker">FORMAT</span><strong>6 design presentations</strong></div>
+<div><span class="kicker">TOOLS</span><strong>Python · Colab · MATLAB</strong></div>
+<div><span class="kicker">MY FOCUS</span><strong class="hl">Analysis code &amp; trade studies</strong></div>
+</div>
+</section>
+
+<!-- 1. TURBOFAN -->
+<section class="wrap study">
+<div class="kicker">PROJECT 5</div>
+<h2>A 100 lbf turbofan for small UAVs</h2>
+<p>The brief was an engine producing 100 lbf of thrust at Mach 0.8 and 35,000 ft, a size class used in drones and small unmanned aircraft. We ran trade studies on bypass ratio, compressor pressure ratio and fan pressure ratio, then sized every station of the engine.</p>
+<p class="lead" style="margin-top:14px">We settled on a compressor pressure ratio of 12, a bypass ratio of 2.5 and a fan pressure ratio of 1.5. A higher bypass ratio would have improved efficiency, but the drop in specific thrust meant much larger flow areas for the same thrust. An engine this small has no room for active blade cooling, so turbine inlet temperature was kept below the roughly 1,760 K limit of silicon carbide ceramic-matrix turbine blades.</p>
+<div class="role"><b>My role:</b> wrote the Python code for the cycle analysis and the parameter sweeps behind the trade studies.</div>
+<div class="figs">
+<div class="nums" role="list" aria-label="Turbofan results">
+<div role="listitem"><b class="hl">100 lbf</b><span>thrust at Mach 0.8, 35,000 ft</span></div>
+<div role="listitem"><b>0.198</b><span>TSFC, lbm/hr·lbf</span></div>
+<div role="listitem"><b>35.4%</b><span>thermal efficiency</span></div>
+<div role="listitem"><b>62.5%</b><span>propulsive efficiency</span></div>
+<div role="listitem"><b>1.13 kg/s</b><span>total airflow (0.32 kg/s core)</span></div>
+<div role="listitem"><b>25–33 lb</b><span>estimated engine weight, ~14 in long</span></div>
+</div>
+<figure>
+<div class="table-wrap">
+<table>
+<thead><tr><th>STATION</th><th class="num">AREA (in²)</th><th class="num">DIAMETER (in)</th></tr></thead>
+<tbody>
+<tr><td>Inlet</td><td class="num">19.48</td><td class="num">4.98</td></tr>
+<tr><td>Fan inlet</td><td class="num">25.64</td><td class="num">5.71</td></tr>
+<tr><td>Core inlet</td><td class="num">7.33</td><td class="num">3.05</td></tr>
+<tr><td>Fan nozzle exit</td><td class="num">10.24</td><td class="num">3.61</td></tr>
+<tr><td>Core nozzle exit</td><td class="num">3.47</td><td class="num">2.10</td></tr>
+</tbody>
+</table>
+</div>
+<figcaption>Station sizing, assuming convergent (choked) nozzles.</figcaption>
+</figure>
+</div>
+</section>
+
+<!-- 2. COMPRESSOR -->
+<section class="wrap study">
+<div class="kicker">PROJECT 6</div>
+<h2>An axial compressor stage running on helium</h2>
+<p>We designed a single axial compressor stage for helium: 20 kg/s at a pressure ratio of 1.7, spinning at 23,000 RPM. Because blade speed grows with radius, we analyzed the stage at three radial slices from hub to tip, building the velocity triangles and Euler work at each one.</p>
+<p class="lead" style="margin-top:14px">Two constraints drove the design: the relative inlet Mach number had to stay below 1.2 to avoid strong shocks, and the flow turning across each blade had to stay under 20° to avoid separation. The tip, where blade speed is highest, came closest to the Mach limit. We also checked an off-design case: cutting mass flow by 5% raised the pressure ratio to 1.76.</p>
+<div class="role"><b>My role:</b> wrote the analysis code, produced the graphs, and analyzed the tip slice.</div>
+<div class="figs">
+<figure>
+<div class="chart">
+<svg viewBox="0 0 560 310" role="img" aria-labelledby="mach-t mach-d">
+<title id="mach-t">Relative inlet Mach number by radial slice</title>
+<desc id="mach-d">Hub slice 1.048, mean slice 1.124, tip slice 1.195, all below the 1.2 design limit.</desc>
+<g stroke="#E1E4DE" stroke-width="1">
+<line x1="60" y1="250" x2="540" y2="250"/><line x1="60" y1="195" x2="540" y2="195"/><line x1="60" y1="140" x2="540" y2="140"/><line x1="60" y1="30" x2="540" y2="30"/>
+</g>
+<g font-size="13" fill="#4A5563" text-anchor="end">
+<text x="50" y="254">0.9</text><text x="50" y="199">1.0</text><text x="50" y="144">1.1</text><text x="50" y="89">1.2</text><text x="50" y="34">1.3</text>
+</g>
+<rect x="95" y="168.6" width="90" height="81.4" fill="#1D4ED8" opacity="0.55"/>
+<rect x="255" y="126.8" width="90" height="123.2" fill="#1D4ED8" opacity="0.75"/>
+<rect x="415" y="87.8" width="90" height="162.2" fill="#1D4ED8"/>
+<line x1="60" y1="85" x2="540" y2="85" stroke="#14202E" stroke-width="2" stroke-dasharray="6 5"/>
+<text x="538" y="76" font-size="13" fill="#14202E" text-anchor="end" font-weight="600">Design limit 1.2</text>
+<g font-size="15" font-weight="600" fill="#14202E" text-anchor="middle">
+<text x="140" y="160">1.048</text><text x="300" y="118">1.124</text><text x="460" y="112" fill="#FFFFFF">1.195</text>
+</g>
+<g font-size="13" fill="#3A4553" text-anchor="middle">
+<text x="140" y="272">Slice 1 · hub</text><text x="300" y="272">Slice 2 · mean</text><text x="460" y="272">Slice 3 · tip</text>
+</g>
+<text x="300" y="300" font-size="12" fill="#4A5563" text-anchor="middle">Relative inlet Mach number (axis starts at 0.9)</text>
+</svg>
+</div>
+<figcaption>The tip slice, with the highest blade speed, runs closest to the 1.2 limit.</figcaption>
+</figure>
+<figure>
+<div class="table-wrap">
+<table>
+<thead><tr><th>SLICE</th><th class="num">BLADE SPEED (m/s)</th><th class="num">FLOW TURNING</th><th class="num">POWER (MW)</th></tr></thead>
+<tbody>
+<tr><td>1 · hub</td><td class="num">827.6</td><td class="num">14.5°</td><td class="num">1.75</td></tr>
+<tr><td>2 · mean</td><td class="num">904.2</td><td class="num">11.0°</td><td class="num">1.90</td></tr>
+<tr class="ours"><td>3 · tip</td><td class="num">929.8</td><td class="num">8.7°</td><td class="num">2.06</td></tr>
+</tbody>
+</table>
+</div>
+<figcaption>Flow turning stays under the 20° limit at every slice.</figcaption>
+</figure>
+</div>
+</section>
+
+<!-- 3. TURBOSHAFT -->
+<section class="wrap study">
+<div class="kicker">PROJECT 4</div>
+<h2>A 40 MW turboshaft for power and marine use</h2>
+<p>We designed a 40 MW turboshaft, the kind of engine used for power generation and ship propulsion, first as an ideal cycle and then with realistic component losses. Choosing compressor, burner, turbine and mechanical efficiencies of 0.90, 0.96, 0.90 and 0.99 cut thermal efficiency roughly in half. The real design uses a lower pressure ratio (18 instead of 24.75) and needs about a third more airflow to deliver the same power.</p>
+<div class="role"><b>My role:</b> built the component-efficiency sensitivity plots, for example sweeping turbine efficiency from 0.85 to 0.92 to see how much each loss mattered, and ran the sanity check against textbook equations.</div>
+<div class="figs">
+<figure>
+<div class="chart">
+<svg viewBox="0 0 560 250" role="img" aria-labelledby="ts-t ts-d">
+<title id="ts-t">Ideal versus real turboshaft</title>
+<desc id="ts-d">Thermal efficiency 60 percent ideal and 32 percent real. Airflow for 40 megawatts 61.7 kilograms per second ideal and 82.9 real.</desc>
+<text x="20" y="30" font-size="14" font-weight="600" fill="#14202E">Thermal efficiency</text>
+<text x="150" y="61" font-size="13" fill="#3A4553" text-anchor="end">Ideal</text>
+<rect x="160" y="44" width="204" height="24" fill="#B8BEC6"/>
+<text x="372" y="61" font-size="14" font-weight="600" fill="#14202E">60%</text>
+<text x="150" y="93" font-size="13" fill="#3A4553" text-anchor="end">Real</text>
+<rect x="160" y="76" width="109" height="24" fill="#1D4ED8"/>
+<text x="277" y="93" font-size="14" font-weight="600" fill="#1D4ED8">32%</text>
+<text x="20" y="150" font-size="14" font-weight="600" fill="#14202E">Airflow for 40 MW (kg/s)</text>
+<text x="150" y="181" font-size="13" fill="#3A4553" text-anchor="end">Ideal</text>
+<rect x="160" y="164" width="210" height="24" fill="#B8BEC6"/>
+<text x="378" y="181" font-size="14" font-weight="600" fill="#14202E">61.7</text>
+<text x="150" y="213" font-size="13" fill="#3A4553" text-anchor="end">Real</text>
+<rect x="160" y="196" width="282" height="24" fill="#1D4ED8"/>
+<text x="450" y="213" font-size="14" font-weight="600" fill="#1D4ED8">82.9</text>
+</svg>
+</div>
+<figcaption>Real component losses halve efficiency and push airflow up about 34%.</figcaption>
+</figure>
+<figure>
+<div class="table-wrap">
+<table>
+<thead><tr><th>PARAMETER</th><th class="num">IDEAL</th><th class="num">REAL</th></tr></thead>
+<tbody>
+<tr><td>Compressor pressure ratio</td><td class="num">24.75</td><td class="num">18.0</td></tr>
+<tr><td>Turbine inlet temperature</td><td class="num">1800 K</td><td class="num">1800 K</td></tr>
+<tr><td>Mass flow</td><td class="num">61.7 kg/s</td><td class="num">82.9 kg/s</td></tr>
+<tr><td>Turbine exit area</td><td class="num">0.54 m²</td><td class="num">0.83 m²</td></tr>
+<tr><td>Thermal efficiency</td><td class="num">0.60</td><td class="num">0.32</td></tr>
+</tbody>
+</table>
+</div>
+<figcaption>Single-crystal superalloy turbine blades and ceramic-matrix composite static parts were selected for the 1800 K turbine inlet.</figcaption>
+</figure>
+</div>
+</section>
+
+<!-- 4. JT9D -->
+<section class="wrap study last">
+<div class="kicker">PROJECT 3</div>
+<h2>Reverse-engineering the Pratt &amp; Whitney JT9D</h2>
+<p>The JT9D, which powered the Boeing 747, was one of the first high-bypass turbofans. We reconstructed its cycle: bypass ratio, pressure ratios through the low- and high-pressure compressors, fuel-to-air ratio, nozzle exit conditions, thrust, fuel consumption and efficiency. The fan alone produced about 34,300 lbf of the engine's 43,500 lbf rating, showing how much of a high-bypass engine's thrust comes from the fan.</p>
+<div class="role"><b>My role:</b> [Confirm your part: it looks like the thrust and efficiency analysis.]</div>
+<div class="figs">
+<figure>
+<div class="table-wrap">
+<table>
+<thead><tr><th>ENGINE</th><th>TYPE</th><th class="num">OPR</th><th class="num">BYPASS</th><th class="num">η<sub>th</sub></th></tr></thead>
+<tbody>
+<tr><td>J57</td><td>Afterburning turbojet</td><td class="num">11.4</td><td class="num">0</td><td class="num">29.3%</td></tr>
+<tr><td>JT3D</td><td>Separate-flow turbofan</td><td class="num">13.6</td><td class="num">1.36</td><td class="num">36.6%</td></tr>
+<tr><td>JT8D</td><td>Mixed-flow turbofan</td><td class="num">15.8</td><td class="num">1.1</td><td class="num">32.5%</td></tr>
+<tr class="ours"><td>JT9D</td><td>High-bypass turbofan</td><td class="num">21.5</td><td class="num">5.05</td><td class="num">33.5%</td></tr>
+</tbody>
+</table>
+</div>
+<figcaption>Our JT9D results against earlier Pratt &amp; Whitney engines.</figcaption>
+</figure>
+<div class="nums" role="list" aria-label="JT9D results">
+<div role="listitem"><b class="hl">5.05</b><span>bypass ratio</span></div>
+<div role="listitem"><b>21.5</b><span>overall pressure ratio</span></div>
+<div role="listitem"><b>0.354</b><span>TSFC, lbm/hr·lbf</span></div>
+<div role="listitem"><b>43%</b><span>of the Carnot limit</span></div>
+</div>
+</div>
+</section>
+</main>
+
+<footer class="p-footer">
+<div class="wrap">
+<a href="index.html">← All projects</a>
+<a class="mono" href="mailto:joelvis.jerez09@gmail.com">joelvis.jerez09@gmail.com</a>
+</div>
+</footer>
+
+</body>
+</html>

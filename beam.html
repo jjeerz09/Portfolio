@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<title>Build-A-Beam — Joelvis Jerez</title>
+<meta name="description" content="Designing, testing and redesigning a foam I-beam under three-point bending, raising its failure load from 30 to 114 lbf.">
+</head>
+<body class="prose">
+
+<header class="site-header">
+<div class="wrap">
+<a class="brand" href="index.html">← JOELVIS JEREZ</a>
+<span class="kicker">PROJECT</span>
+</div>
+</header>
+
+<main>
+<section class="wrap p-hero">
+<div class="kicker">AME 20217 LAB II · UNIVERSITY OF NOTRE DAME · FALL 2025</div>
+<h1>Build-A-Beam</h1>
+<p>Design, build and load-test a foam-board beam in three-point bending, then redesign it after the first one fails.</p>
+<div class="facts">
+<div><span class="kicker">MATERIALS</span><strong>One 10 × 40 in foam sheet, 4 glue sticks</strong></div>
+<div><span class="kicker">TEST</span><strong>30 in span, three-point bend</strong></div>
+<div><span class="kicker">RESULT</span><strong class="hl">30 → 114 lbf (3.8×)</strong></div>
+<div><span class="kicker">TOOLS</span><strong>SolidWorks · MATLAB · ATS load frame</strong></div>
+</div>
+</section>
+<section class="wrap"><div class="pair hero-media" style="margin-top:40px">
+<figure><img class="shot" src="beam-test-1.jpg" alt="First I-beam in the load frame" width="1200" height="900"><figcaption>Beam 1, a shallow I-beam, in the load frame.</figcaption></figure>
+<figure><img class="shot" src="beam-test-2.jpg" alt="Second, taller beam with internal stiffeners in the load frame" width="1200" height="900"><figcaption>Beam 2, the redesign, under load.</figcaption></figure>
+</div></section>
+
+<section class="wrap block">
+<h2>Choosing a cross-section</h2>
+<p>Maximum bending moment grows in direct proportion to the applied load, so the goal was the most bending resistance for the least foam. I compared three cross-sections by area and second moment of area. The solid rectangle was stiffest but used the most material, and the box section would have been hard to build from one sheet. The I-beam was the most material-efficient and the simplest to make.</p>
+<div class="table-wrap" style="margin-top:28px;max-width:640px">
+<table>
+<thead><tr><th>CROSS-SECTION</th><th class="num">AREA (in²)</th><th class="num">I (in⁴)</th></tr></thead>
+<tbody>
+<tr><td>Solid rectangle</td><td class="num">6.10</td><td class="num">10.01</td></tr>
+<tr><td>Hollow box</td><td class="num">3.60</td><td class="num">8.71</td></tr>
+<tr class="ours"><td>I-beam (chosen)</td><td class="num">2.26</td><td class="num">0.56</td></tr>
+</tbody>
+</table>
+</div>
+</section>
+
+<section class="wrap block">
+<h2>Failure, then redesign</h2>
+<p>Loaded at 0.5 in/min, the first beam failed at 30 lbf when its top flange wrinkled under compression. Its 1-inch web was too short. For the second beam I raised the web to 5 inches and varied the cross-section along the length, adding internal stiffeners to spread the load and prevent local buckling. I drew both the cut plans and the beam designs in SolidWorks and analyzed the load data in MATLAB.</p>
+<div class="figs">
+<figure><img class="shot" src="beam-load-plot.png" alt="Load versus displacement for both beams: beam 2 peaks near 114 lbf, beam 1 near 30 lbf" width="1200" height="806" loading="lazy"><figcaption>Load vs. displacement. Beam 2 carried nearly four times the load.</figcaption></figure>
+<div class="nums" role="list" aria-label="Beam results">
+<div role="listitem"><b>30.0 lbf</b><span>beam 1 maximum load</span></div>
+<div role="listitem"><b class="hl">114.0 lbf</b><span>beam 2 maximum load</span></div>
+<div role="listitem"><b>97 lbf/in</b><span>beam 1 stiffness</span></div>
+<div role="listitem"><b class="hl">175.5 lbf/in</b><span>beam 2 stiffness (+81%)</span></div>
+</div>
+</div>
+<figure style="margin-top:32px"><a class="zoom" href="beam-second-design-drawing.png"><img class="shot" src="beam-second-design-drawing.png" alt="SolidWorks drawing of the second beam design" width="1400" height="1081" loading="lazy"></a><figcaption>My SolidWorks drawing of the second beam. Tap to open full size.</figcaption></figure>
+</section>
+
+<section class="wrap block last">
+<h2>What I learned</h2>
+<p>Beam 2 still failed by compressive buckling of the top, just at a much higher load. Raising the web moved the failure point up, but the next improvement would come from reinforcing the compression flange itself.</p>
+</section>
+</main>
+
+<footer class="p-footer">
+<div class="wrap">
+<a href="index.html">← All projects</a>
+<a class="mono" href="mailto:joelvis.jerez09@gmail.com">joelvis.jerez09@gmail.com</a>
+</div>
+</footer>
+
+</body>
+</html>
