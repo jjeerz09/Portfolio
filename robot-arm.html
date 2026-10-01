@@ -55,7 +55,7 @@
 <p style="color:var(--body)">The H came out clean: three strokes with the pen lifting in between. The I was harder than expected. Its long single stroke bent, so it reads closer to a V. Seeing the math meet real hardware was the best part, since equations that are correct on paper still have to deal with servo play and too few via points.</p>
 <p style="color:var(--body);margin-top:14px">Next time, I would interpolate between via points and compute the inverse kinematics on the Arduino itself, so strokes stay straighter and new letters only need new points.</p>
 </div>
-<figure><img class="shot" src="robot-h-closeup.jpg" alt="Close-up of the H drawn by the robot, rotated upright" width="380" height="500" loading="lazy" style="max-width:320px"><figcaption>The H, rotated upright.</figcaption></figure>
+<figure><img class="shot" src="robot-hi.jpg" alt="The letters H and I drawn by the robot arm, rotated upright" width="540" height="440" loading="lazy" style="max-width:440px"><figcaption>“HI” as the arm wrote it, rotated upright. The H is clean; the I bent into an upside-down V.</figcaption></figure>
 </div>
 <pre class="code"><span class="c">% Geometric inverse kinematics for the Braccio arm (MATLAB)</span>
 function [t1,t2,t3,t4] = invKin(r, t, h, phi)
