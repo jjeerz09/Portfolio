@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<title>LevelHound: A Self-Leveling Quadruped — Joelvis Jerez</title>
+<meta name="description" content="In progress: a low-cost servo quadruped that keeps its payload level on slopes, using leg-based body leveling and a two-axis gimbal.">
+</head>
+<body class="prose">
+
+<header class="site-header">
+<div class="wrap">
+<a class="brand" href="index.html">← JOELVIS JEREZ</a>
+<span class="kicker">IN PROGRESS</span>
+</div>
+</header>
+
+<main>
+<section class="wrap p-hero">
+<div class="kicker">EE 40083 EXPERIMENTAL ROBOTICS · NOTRE DAME · FALL 2026</div>
+<h1>LevelHound</h1>
+<p>A low-cost, servo-driven robot dog that keeps whatever it carries level, whether it's walking on flat ground or standing on a slope. Built with teammate Ishmael Auqui.</p>
+<div class="facts">
+<div><span class="kicker">STATUS</span><strong class="hl">Proposal done · CAD and build next</strong></div>
+<div><span class="kicker">TEAM</span><strong>2 students</strong></div>
+<div><span class="kicker">HARDWARE</span><strong>Arduino Nano · 10 servos · IMU · load cell</strong></div>
+<div><span class="kicker">TARGET</span><strong>Payload within 3° of level on 25° slopes</strong></div>
+</div>
+</section>
+
+<section class="wrap two">
+<div>
+<h2>The problem</h2>
+<p>Robots tilt on uneven ground and slopes, which spills, damages or disturbs delicate payloads like lab samples, sensors and fragile items. Legged robots handle rough terrain better than wheels, but few actively keep their payload level, and the ones that do are expensive research platforms.</p>
+</div>
+<div>
+<h2>The idea</h2>
+<p>Level it twice. If the legs tilt the body back toward level first, a small two-axis gimbal on top only has to correct the leftover tilt. Our hypothesis is that this combination keeps the payload within 3° of level on slopes up to 25°, which a gimbal alone can't do.</p>
+</div>
+</section>
+
+<section class="wrap block">
+<h2>Three behaviors</h2>
+<p>The robot switches between three states based on what its sensors read: an IMU for body tilt and a load cell under the payload for weight.</p>
+<div class="figs">
+<figure>
+<a class="zoom" href="levelhound-states.jpg"><img class="shot" src="levelhound-states.jpg" alt="Concept sketches of the three states: walking, crouching, and leveling on a slope" width="645" height="902" loading="lazy"></a>
+<figcaption>Our concept sketches of states A, B and C.</figcaption>
+</figure>
+<div class="nums" role="list" aria-label="Robot states" style="grid-template-columns:1fr">
+<div role="listitem"><b class="hl">A · Walk</b><span>The gimbal keeps the payload level while the robot walks.</span></div>
+<div role="listitem"><b>B · Crouch</b><span>When the load cell reads more than 300 g, the robot lowers itself for stability.</span></div>
+<div role="listitem"><b>C · Level</b><span>On slopes steeper than 15°, the legs level the body and the gimbal fine-tunes the rest.</span></div>
+</div>
+</div>
+</section>
+
+<section class="wrap block">
+<h2>Design so far</h2>
+<p>The frame is laser-cut plywood with a target mass under 1.5 kg. Each leg has two degrees of freedom (hip and knee) on aluminum servo brackets with rubber feet. The gimbal stacks a pitch servo recessed into the body, a lighter roll servo above it, and a 1 kg load cell under a 3D-printed payload bracket.</p>
+<figure>
+<a class="zoom" href="levelhound-gimbal.jpg"><img class="shot" src="levelhound-gimbal.jpg" alt="Front and side view sketches of the two-axis gimbal with load cell" width="1298" height="512" loading="lazy"></a>
+<figcaption>Gimbal layout, front and side views.</figcaption>
+</figure>
+<div class="figs">
+<figure>
+<a class="zoom" href="levelhound-wiring.jpg"><img class="shot" src="levelhound-wiring.jpg" alt="Wiring schematic: battery, fuse, regulator, servo driver, Arduino, IMU and load cell amplifier" width="778" height="663" loading="lazy"></a>
+<figcaption>Wiring schematic. Tap to open full size.</figcaption>
+</figure>
+<div class="table-wrap">
+<table>
+<thead><tr><th>SUBSYSTEM</th><th>COMPONENTS</th></tr></thead>
+<tbody>
+<tr><td>Power</td><td>2S LiPo (7.4 V) → 15 A fuse → switch → regulator for servos, Arduino Nano for logic</td></tr>
+<tr><td>Actuation</td><td>PCA9685 16-channel servo driver: 8 leg servos, gimbal pitch and roll</td></tr>
+<tr><td>Servos</td><td>9 × MG996R (legs and pitch), 1 × MG90S (roll)</td></tr>
+<tr><td>Sensing</td><td>MPU-6050 IMU, 1 kg load cell with HX711 amplifier</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+
+<section class="wrap block last">
+<h2>How we'll test it</h2>
+<p>An adjustable ramp from 5° to 25°, a cup of water on the tray, and a second IMU on the tray to measure its tilt directly. We set pass/fail targets before building anything:</p>
+<div class="table-wrap">
+<table>
+<thead><tr><th>TEST</th><th>TARGET</th></tr></thead>
+<tbody>
+<tr><td>Slope</td><td>Payload tilt ≤ 3° from 0–25°, and lower than gimbal-only at 20° and 25°</td></tr>
+<tr><td>Walking</td><td>Payload tilt ≤ 5° RMS, at least 50% lower than with the gimbal off</td></tr>
+<tr><td>Slope mode</td><td>Triggers within 2 s of passing 15°, with no false triggers over 2 min of flat walking</td></tr>
+<tr><td>Crouch mode</td><td>Triggers correctly above 300 g in at least 9 of 10 trials</td></tr>
+<tr><td>Spill</td><td>A cup filled to 1 cm below the rim loses under 2 g of water on a flat walk and a ramp</td></tr>
+</tbody>
+</table>
+</div>
+<p style="margin-top:20px">Results will go here once testing wraps up at the end of the semester.</p>
+</section>
+</main>
+
+<footer class="p-footer">
+<div class="wrap">
+<a href="index.html">← All projects</a>
+<a class="mono" href="mailto:joelvis.jerez09@gmail.com">joelvis.jerez09@gmail.com</a>
+</div>
+</footer>
+
+</body>
+</html>

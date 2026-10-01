@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<title>Manufacturing Engineering Intern, Barletta — Joelvis Jerez</title>
+<meta name="description" content="Summer 2026 manufacturing engineering internship at Barletta Pontoon Boats: CAD standardization, 3D-scanning evaluation and fixture design.">
+</head>
+<body class="prose">
+
+<header class="site-header">
+<div class="wrap">
+<a class="brand" href="index.html">← JOELVIS JEREZ</a>
+<span class="kicker">INTERNSHIP</span>
+</div>
+</header>
+
+<main>
+<section class="wrap p-hero">
+<div class="kicker">BARLETTA PONTOON BOATS · SUMMER 2026</div>
+<h1>Manufacturing Engineering Intern</h1>
+<p>Over the summer I worked on four projects across manufacturing and design engineering, each aimed at a different gap on the production floor: inconsistent drawings, missing as-built records, inflexible fixtures, and digital product models.</p>
+<div class="facts">
+<div><span class="kicker">COMPANY</span><strong>Barletta Pontoon Boats</strong></div>
+<div><span class="kicker">ROLE</span><strong>Manufacturing Engineering Intern</strong></div>
+<div><span class="kicker">PROJECTS</span><strong>4, presented at summer’s end</strong></div>
+<div><span class="kicker">TOOLS</span><strong class="hl">SolidWorks · 3D scanning · CAD auditing</strong></div>
+</div>
+<p class="note">Production drawings, fixture designs and vendor details belong to Barletta, so this page describes the work without showing them. The diagrams here are my own.</p>
+</section>
+
+<!-- 1. CAD -->
+<section class="wrap study">
+<div class="kicker">PROJECT 1 · MANUFACTURING ENGINEERING</div>
+<h2>Standardizing production drawings</h2>
+<p>Prints going to the production floor had no standard format. Extra non-critical detail, inconsistent dimensioning and varying layouts made them harder for manufacturing staff to read. I audited the rail-location and floorplan sheets for every in-scope model, stripped out non-critical detail, normalized how dimensions were shown, and added a bill of materials for part identification.</p>
+<p class="lead" style="margin-top:14px">I then checked the drawings against boats on the production floor, correcting sketches and blocks that didn't match what was actually built. I prioritized the base model of each line, since the many editions are built from those and they set the standard for everything else.</p>
+<div class="figs">
+<div class="nums" role="list" aria-label="Drawing audit results">
+<div role="listitem"><b class="hl">67</b><span>models audited</span></div>
+<div role="listitem"><b>4</b><span>product lines: Sanza, Aria, Cabrio, Lusso</span></div>
+<div role="listitem"><b>2</b><span>sheet types standardized: rail location and floorplan</span></div>
+<div role="listitem"><b>Base models</b><span>validated against built boats</span></div>
+</div>
+<figure>
+<div class="chart">
+<svg viewBox="0 0 560 250" role="img" aria-labelledby="cad-t cad-d">
+<title id="cad-t">Drawing standardization workflow</title>
+<desc id="cad-d">Four steps: audit the drawing, strip and normalize, validate against built boats, release a standard print with a bill of materials.</desc>
+<g font-family="IBM Plex Sans, Helvetica, sans-serif">
+<rect x="10" y="40" width="120" height="110" fill="#F3F4F1" stroke="#C9CDC4"/>
+<rect x="150" y="40" width="120" height="110" fill="#F3F4F1" stroke="#C9CDC4"/>
+<rect x="290" y="40" width="120" height="110" fill="#F3F4F1" stroke="#C9CDC4"/>
+<rect x="430" y="40" width="120" height="110" fill="#1D4ED8"/>
+<g font-size="12" fill="#4A5563" font-family="IBM Plex Mono, Menlo, monospace"><text x="22" y="64">01</text><text x="162" y="64">02</text><text x="302" y="64">03</text><text x="442" y="64" fill="#DCE5FB">04</text></g>
+<g font-size="15" font-weight="600" fill="#14202E">
+<text x="22" y="92">Audit</text><text x="162" y="92">Strip &amp;</text><text x="162" y="112">normalize</text><text x="302" y="92">Validate on</text><text x="302" y="112">the floor</text><text x="442" y="92" fill="#FFFFFF">Standard</text><text x="442" y="112" fill="#FFFFFF">print + BOM</text>
+</g>
+<g fill="#14202E"><path d="M132 95 l14 0 l-5 -5 M146 95 l-5 5" stroke="#14202E" stroke-width="2" fill="none"/><path d="M272 95 l14 0 l-5 -5 M286 95 l-5 5" stroke="#14202E" stroke-width="2" fill="none"/><path d="M412 95 l14 0 l-5 -5 M426 95 l-5 5" stroke="#14202E" stroke-width="2" fill="none"/></g>
+<text x="280" y="200" font-size="13" fill="#3A4553" text-anchor="middle">Every in-scope model went through steps 1–2;</text>
+<text x="280" y="220" font-size="13" fill="#3A4553" text-anchor="middle">base models were checked against built boats in step 3.</text>
+</g>
+</svg>
+</div>
+<figcaption>The audit workflow I followed for each model.</figcaption>
+</figure>
+</div>
+</section>
+
+<!-- 2. SCANNING -->
+<section class="wrap study">
+<div class="kicker">PROJECT 2 · MANUFACTURING ENGINEERING · R&amp;D</div>
+<h2>Evaluating 3D scanning for as-built floorplans</h2>
+<p>When a boat comes back for a warranty floor replacement, there's no precise record of how that specific boat was built. The goal was a 3D-scanned, as-built floorplan for every boat, tied to its serial number, to support targeted floor replacements and dealer service.</p>
+<p class="lead" style="margin-top:14px">Working through a five-phase plan, I evaluated scanning approaches against production requirements: accuracy, repeatability, scan time and whether it could keep up at production volume. A handheld scanner was too slow to scale, and phone and tablet apps weren't accurate or repeatable enough, so by the end of the summer the project had moved on to evaluating industrial-grade systems.</p>
+<figure style="margin-top:32px">
+<div class="chart">
+<svg viewBox="0 0 900 230" role="img" aria-labelledby="scan-t scan-d">
+<title id="scan-t">Five-phase scanning evaluation plan</title>
+<desc id="scan-d">Phase 1 define requirements, phase 2 handheld and mobile testing, both complete. Phase 3 industrial-grade evaluation, in progress at the end of the internship. Phase 4 solution development and phase 5 pilot are next.</desc>
+<g font-family="IBM Plex Sans, Helvetica, sans-serif">
+<line x1="60" y1="70" x2="840" y2="70" stroke="#C9CDC4" stroke-width="4"/>
+<line x1="60" y1="70" x2="450" y2="70" stroke="#1D4ED8" stroke-width="4"/>
+<circle cx="60" cy="70" r="16" fill="#1D4ED8"/><circle cx="255" cy="70" r="16" fill="#1D4ED8"/>
+<circle cx="450" cy="70" r="20" fill="#FFFFFF" stroke="#1D4ED8" stroke-width="5"/>
+<circle cx="645" cy="70" r="16" fill="#FFFFFF" stroke="#8A93A0" stroke-width="3"/><circle cx="840" cy="70" r="16" fill="#FFFFFF" stroke="#8A93A0" stroke-width="3"/>
+<g font-size="13" fill="#FFFFFF" text-anchor="middle" font-weight="600"><text x="60" y="75">1</text><text x="255" y="75">2</text></g>
+<g font-size="13" text-anchor="middle" font-weight="600"><text x="450" y="75" fill="#1D4ED8">3</text><text x="645" y="75" fill="#4A5563">4</text><text x="840" y="75" fill="#4A5563">5</text></g>
+<g font-size="15" font-weight="600" fill="#14202E" text-anchor="middle">
+<text x="60" y="120">Define</text><text x="60" y="139">requirements</text>
+<text x="255" y="120">Test handheld</text><text x="255" y="139">&amp; mobile options</text>
+<text x="450" y="120" fill="#1D4ED8">Industrial-grade</text><text x="450" y="139" fill="#1D4ED8">evaluation</text>
+<text x="645" y="120">Develop</text><text x="645" y="139">solution</text>
+<text x="840" y="120">Pilot</text>
+</g>
+<g font-size="12.5" fill="#4A5563" text-anchor="middle">
+<text x="60" y="166">Accuracy, scan time,</text><text x="60" y="183">scalability targets</text>
+<text x="255" y="166">Handheld: too slow at volume</text><text x="255" y="183">Mobile: not accurate enough</text>
+<text x="450" y="166">In progress when</text><text x="450" y="183">my internship ended</text>
+</g>
+</g>
+</svg>
+</div>
+<figcaption>The five-phase project plan. Phases 1 and 2 ruled out the lower-cost options.</figcaption>
+</figure>
+</section>
+
+<!-- 3 & 4 -->
+<section class="wrap two last">
+<div>
+<div class="kicker" style="margin-bottom:10px">PROJECT 3 · DESIGN ENGINEERING</div>
+<h2>A universal, self-leveling bracket fixture</h2>
+<p>Each production line had its own bracket fixture setup, which caused alignment inconsistencies, made fixtures awkward and less safe to use, and meant a given pontoon couldn't run down just any line. I developed concepts for a single fixture that levels itself and could support future automation. My manager approved the direction to move toward prototyping. The concepts themselves stay private while the company protects the design.</p>
+</div>
+<div>
+<div class="kicker" style="margin-bottom:10px">PROJECT 4 · DESIGN ENGINEERING</div>
+<h2>3D boat modeling</h2>
+<p>I also built 3D models of boats to support product visualization and digital documentation, extending the company's digital product records alongside the drawing work.</p>
+<div class="role" style="margin-top:20px"><b>Takeaways:</b> working with plant managers and engineers on real production problems, scoping projects into phases, and choosing what to prioritize when there isn't time to do everything.</div>
+</div>
+</section>
+</main>
+
+<footer class="p-footer">
+<div class="wrap">
+<a href="index.html">← All projects</a>
+<a class="mono" href="mailto:joelvis.jerez09@gmail.com">joelvis.jerez09@gmail.com</a>
+</div>
+</footer>
+
+</body>
+</html>
