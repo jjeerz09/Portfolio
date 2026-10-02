@@ -124,46 +124,14 @@
 <h2>A 40 MW turboshaft for power and marine use</h2>
 <p>We designed a 40 MW turboshaft, the kind of engine used for power generation and ship propulsion, first as an ideal cycle and then with realistic component losses. Choosing compressor, burner, turbine and mechanical efficiencies of 0.90, 0.96, 0.90 and 0.99 cut thermal efficiency roughly in half. The real design uses a lower pressure ratio (18 instead of 24.75) and needs about a third more airflow to deliver the same power.</p>
 <div class="role"><b>My role:</b> built the component-efficiency sensitivity plots, for example sweeping turbine efficiency from 0.85 to 0.92 to see how much each loss mattered, and ran the sanity check against textbook equations.</div>
-<div class="figs">
-<figure>
-<div class="chart">
-<svg viewBox="0 0 560 250" role="img" aria-labelledby="ts-t ts-d">
-<title id="ts-t">Ideal versus real turboshaft</title>
-<desc id="ts-d">Thermal efficiency 60 percent ideal and 32 percent real. Airflow for 40 megawatts 61.7 kilograms per second ideal and 82.9 real.</desc>
-<text x="20" y="30" font-size="14" font-weight="600" fill="#14202E">Thermal efficiency</text>
-<text x="150" y="61" font-size="13" fill="#3A4553" text-anchor="end">Ideal</text>
-<rect x="160" y="44" width="204" height="24" fill="#B8BEC6"/>
-<text x="372" y="61" font-size="14" font-weight="600" fill="#14202E">60%</text>
-<text x="150" y="93" font-size="13" fill="#3A4553" text-anchor="end">Real</text>
-<rect x="160" y="76" width="109" height="24" fill="#1D4ED8"/>
-<text x="277" y="93" font-size="14" font-weight="600" fill="#1D4ED8">32%</text>
-<text x="20" y="150" font-size="14" font-weight="600" fill="#14202E">Airflow for 40 MW (kg/s)</text>
-<text x="150" y="181" font-size="13" fill="#3A4553" text-anchor="end">Ideal</text>
-<rect x="160" y="164" width="210" height="24" fill="#B8BEC6"/>
-<text x="378" y="181" font-size="14" font-weight="600" fill="#14202E">61.7</text>
-<text x="150" y="213" font-size="13" fill="#3A4553" text-anchor="end">Real</text>
-<rect x="160" y="196" width="282" height="24" fill="#1D4ED8"/>
-<text x="450" y="213" font-size="14" font-weight="600" fill="#1D4ED8">82.9</text>
-</svg>
+<figure style="margin-top:32px">
+<div class="cmp" role="table" aria-label="Ideal versus real turboshaft design">
+<div class="cmp-head" role="row"><span>SAME 40 MW OUTPUT</span><span>IDEAL</span><span></span><span>REAL</span><span>CHANGE</span></div>
+<div class="cmp-row"><span class="cmp-label">Thermal efficiency</span><span class="cmp-ideal">60%</span><span class="cmp-arrow" aria-hidden="true">→</span><span class="cmp-real">32%</span><span class="cmp-chg">about half</span></div><div class="cmp-row"><span class="cmp-label">Airflow needed for 40 MW</span><span class="cmp-ideal">61.7 kg/s</span><span class="cmp-arrow" aria-hidden="true">→</span><span class="cmp-real">82.9 kg/s</span><span class="cmp-chg">+34%</span></div><div class="cmp-row"><span class="cmp-label">Compressor pressure ratio</span><span class="cmp-ideal">24.75</span><span class="cmp-arrow" aria-hidden="true">→</span><span class="cmp-real">18</span><span class="cmp-chg">lower</span></div><div class="cmp-row"><span class="cmp-label">Turbine exit area</span><span class="cmp-ideal">0.54 m²</span><span class="cmp-arrow" aria-hidden="true">→</span><span class="cmp-real">0.83 m²</span><span class="cmp-chg">+54%</span></div><div class="cmp-row"><span class="cmp-label">Turbine inlet temperature</span><span class="cmp-ideal">1,800 K</span><span class="cmp-arrow" aria-hidden="true">→</span><span class="cmp-real">1,800 K</span><span class="cmp-chg">same</span></div>
+<p class="cmp-take">Adding realistic losses to every component halves the efficiency, so the real engine has to swallow about a third more air to make the same power.</p>
 </div>
-<figcaption>Real component losses halve efficiency and push airflow up about 34%.</figcaption>
+<figcaption>Ideal vs. real design. Single-crystal superalloy turbine blades and ceramic-matrix composite static parts were selected for the 1,800 K turbine inlet.</figcaption>
 </figure>
-<figure>
-<div class="table-wrap">
-<table>
-<thead><tr><th>PARAMETER</th><th class="num">IDEAL</th><th class="num">REAL</th></tr></thead>
-<tbody>
-<tr><td>Compressor pressure ratio</td><td class="num">24.75</td><td class="num">18.0</td></tr>
-<tr><td>Turbine inlet temperature</td><td class="num">1800 K</td><td class="num">1800 K</td></tr>
-<tr><td>Mass flow</td><td class="num">61.7 kg/s</td><td class="num">82.9 kg/s</td></tr>
-<tr><td>Turbine exit area</td><td class="num">0.54 m²</td><td class="num">0.83 m²</td></tr>
-<tr><td>Thermal efficiency</td><td class="num">0.60</td><td class="num">0.32</td></tr>
-</tbody>
-</table>
-</div>
-<figcaption>Single-crystal superalloy turbine blades and ceramic-matrix composite static parts were selected for the 1800 K turbine inlet.</figcaption>
-</figure>
-</div>
 </section>
 
 <!-- 4. JT9D -->
