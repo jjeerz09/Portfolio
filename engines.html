@@ -65,6 +65,7 @@
 <figcaption>Station sizing, assuming convergent (choked) nozzles.</figcaption>
 </figure>
 </div>
+<div class="figs"><figure><a class="zoom" href="engine-tsfc-contour.jpg"><img class="shot" src="engine-tsfc-contour.jpg" alt="TSFC contour plot of compressor pressure ratio versus turbine inlet temperature" width="723" height="582" loading="lazy"></a><figcaption>From our Python code: TSFC across compressor pressure ratio and turbine inlet temperature. Higher pressure ratios cut fuel burn.</figcaption></figure><figure><a class="zoom" href="engine-turbofan-stations.jpg"><img class="shot" src="engine-turbofan-stations.jpg" alt="Station-by-station diagram of the turbofan with pressures, temperatures and Mach numbers" width="1400" height="787" loading="lazy"></a><figcaption>Station-by-station results from our presentation. This slide shows an earlier iteration at 1,700 K; the final design used 1,600 K.</figcaption></figure></div>
 </section>
 
 <!-- 2. COMPRESSOR -->
@@ -116,6 +117,7 @@
 <figcaption>Flow turning stays under the 20° limit at every slice.</figcaption>
 </figure>
 </div>
+<div class="figs"><figure style="grid-column:1/-1"><a class="zoom" href="engine-vt-tip.jpg"><img class="shot" src="engine-vt-tip.jpg" alt="Velocity triangles for the tip slice" width="1260" height="492" loading="lazy"></a><figcaption>Slice 3 (tip), my analysis: the highest blade speed, with relative inlet Mach 1.195, just under the 1.2 limit.</figcaption></figure><figure><a class="zoom" href="engine-vt-hub.jpg"><img class="shot" src="engine-vt-hub.jpg" alt="Velocity triangles for the hub slice" width="1374" height="488" loading="lazy"></a><figcaption>Slice 1 (hub)</figcaption></figure><figure><a class="zoom" href="engine-vt-mean.jpg"><img class="shot" src="engine-vt-mean.jpg" alt="Velocity triangles for the mean slice" width="1260" height="534" loading="lazy"></a><figcaption>Slice 2 (mean)</figcaption></figure></div>
 </section>
 
 <!-- 3. TURBOSHAFT -->
@@ -132,6 +134,7 @@
 </div>
 <figcaption>Ideal vs. real design. Single-crystal superalloy turbine blades and ceramic-matrix composite static parts were selected for the 1,800 K turbine inlet.</figcaption>
 </figure>
+<div class="figs"><figure><a class="zoom" href="engine-turboshaft-massflow.jpg"><img class="shot" src="engine-turboshaft-massflow.jpg" alt="Required mass flow versus compressor pressure ratio for three compressor efficiencies" width="940" height="650" loading="lazy"></a><figcaption>My sensitivity study: required airflow vs. pressure ratio at three compressor efficiencies. A pressure ratio of 18 sits near the minimum.</figcaption></figure><figure><a class="zoom" href="engine-turboshaft-hs.jpg"><img class="shot" src="engine-turboshaft-hs.jpg" alt="Enthalpy-entropy diagram of the real turboshaft cycle" width="1046" height="716" loading="lazy"></a><figcaption>Enthalpy-entropy diagram of the real 40 MW cycle, showing losses in compression and expansion.</figcaption></figure></div>
 </section>
 
 <!-- 4. JT9D -->
@@ -140,6 +143,7 @@
 <h2>Reverse-engineering the Pratt &amp; Whitney JT9D</h2>
 <p>The JT9D, which powered the Boeing 747, was one of the first high-bypass turbofans. We reconstructed its cycle: bypass ratio, pressure ratios through the low- and high-pressure compressors, fuel-to-air ratio, nozzle exit conditions, thrust, fuel consumption and efficiency. The fan alone produced about 34,300 lbf of the engine's 43,500 lbf rating, showing how much of a high-bypass engine's thrust comes from the fan.</p>
 <div class="role"><b>My role:</b> owned the thrust and efficiency analysis: checking total gross thrust against the 43,500 lbf rating, TSFC, thermal efficiency, the Carnot comparison and the comparison against earlier Pratt &amp; Whitney engines. I also ran the sanity check of our results against textbook equations.</div>
+<figure style="margin-top:28px;max-width:820px"><a class="zoom" href="engine-jt9d-cutaway.jpg"><img class="shot" src="engine-jt9d-cutaway.jpg" alt="Cutaway illustration of the Pratt &amp; Whitney JT9D-20 turbofan" width="1400" height="1054" loading="lazy"></a><figcaption>Cutaway of the JT9D: the large single-stage fan at left drives most of the thrust. Illustration: Pratt &amp; Whitney.</figcaption></figure>
 <div class="figs">
 <figure>
 <div class="table-wrap">
