@@ -25,9 +25,9 @@
 <h1>LevelHound</h1>
 <p>A low-cost, servo-driven robot dog that keeps whatever it carries level, whether it's walking on flat ground or standing on a slope. Built with teammate Ishmael Auqui.</p>
 <div class="facts">
-<div><span class="kicker">STATUS</span><strong class="hl">Proposal done · CAD and build next</strong></div>
+<div><span class="kicker">STATUS</span><strong class="hl">All parts printed · assembly underway</strong></div>
 <div><span class="kicker">TEAM</span><strong>2 students</strong></div>
-<div><span class="kicker">HARDWARE</span><strong>Arduino Nano · 10 servos · IMU · load cell</strong></div>
+<div><span class="kicker">HARDWARE</span><strong>ESP32 · 10 servos · 2 IMUs · load cell</strong></div>
 <div><span class="kicker">TARGET</span><strong>Payload within 3° of level on 25° slopes</strong></div>
 </div>
 </section>
@@ -45,7 +45,7 @@
 
 <section class="wrap block">
 <h2>Three behaviors</h2>
-<p>The robot switches between three states based on what its sensors read: an IMU for body tilt and a load cell under the payload for weight.</p>
+<p>The robot switches between three states based on what its sensors read: an IMU on the body for tilt, a second IMU on the tray to check the payload, and a load cell under the payload for weight.</p>
 <div class="figs">
 <figure>
 <a class="zoom" href="levelhound-states.jpg"><img class="shot" src="levelhound-states.jpg" alt="Concept sketches of the three states: walking, crouching, and leveling on a slope" width="645" height="902" loading="lazy"></a>
@@ -61,24 +61,29 @@
 
 <section class="wrap block">
 <h2>Design so far</h2>
-<p>The frame is laser-cut plywood with a target mass under 1.5 kg. Each leg has two degrees of freedom (hip and knee) on aluminum servo brackets with rubber feet. The gimbal stacks a pitch servo recessed into the body, a lighter roll servo above it, and a 1 kg load cell under a 3D-printed payload bracket.</p>
+<p>We moved the frame from laser-cut plywood to a fully 3D-printed chassis, still aiming for under 1.5 kg. Every printed part is now done, and we're assembling the robot. Each leg has two degrees of freedom (hip and knee) on aluminum servo brackets. The gimbal stacks the pitch and roll servos, with a 1 kg load cell under a 3D-printed payload bracket.</p>
+<figure>
+<a class="zoom" href="levelhound-cad.jpg"><img class="shot" src="levelhound-cad.jpg" alt="CAD model of LevelHound: 3D-printed chassis with four two-joint servo legs" width="1302" height="1056" loading="lazy"></a>
+<figcaption>CAD assembly of the chassis and legs. Some parts aren't modeled yet.</figcaption>
+</figure>
 <figure>
 <a class="zoom" href="levelhound-gimbal.jpg"><img class="shot" src="levelhound-gimbal.jpg" alt="Front and side view sketches of the two-axis gimbal with load cell" width="1298" height="512" loading="lazy"></a>
 <figcaption>Gimbal layout, front and side views.</figcaption>
 </figure>
 <div class="figs">
 <figure>
-<a class="zoom" href="levelhound-wiring.jpg"><img class="shot" src="levelhound-wiring.jpg" alt="Wiring schematic: battery, fuse, regulator, servo driver, Arduino, IMU and load cell amplifier" width="778" height="663" loading="lazy"></a>
+<a class="zoom" href="levelhound-wiring.png"><img class="shot" src="levelhound-wiring.png" alt="Wiring schematic: 2S LiPo, fuse, switch, 5 V UBEC, ESP32, PCA9685 servo driver, two IMUs, and an HX711 load cell amplifier" width="1450" height="1360" loading="lazy"></a>
 <figcaption>Wiring schematic. Tap to open full size.</figcaption>
 </figure>
 <div class="table-wrap">
 <table>
 <thead><tr><th>SUBSYSTEM</th><th>COMPONENTS</th></tr></thead>
 <tbody>
-<tr><td>Power</td><td>2S LiPo (7.4 V) → 15 A fuse → switch → regulator for servos, Arduino Nano for logic</td></tr>
-<tr><td>Actuation</td><td>PCA9685 16-channel servo driver: 8 leg servos, gimbal pitch and roll</td></tr>
-<tr><td>Servos</td><td>9 × MG996R (legs and pitch), 1 × MG90S (roll)</td></tr>
-<tr><td>Sensing</td><td>MPU-6050 IMU, 1 kg load cell with HX711 amplifier</td></tr>
+<tr><td>Power</td><td>2S LiPo (7.4 V) → 15 A fuse → switch → 5 V UBEC, feeding the servo rail (with a 1000 µF bulk capacitor) and the ESP32</td></tr>
+<tr><td>Control</td><td>ESP32 on a shared I²C bus (SDA G21, SCL G22)</td></tr>
+<tr><td>Actuation</td><td>PCA9685 16-channel servo driver: channels 0–7 legs, 8 gimbal roll, 9 gimbal pitch</td></tr>
+<tr><td>Servos</td><td>9 × MG996R (legs and roll), 1 × MG90S (pitch)</td></tr>
+<tr><td>Sensing</td><td>Two MPU-6050 IMUs, body (0x68) and tray (0x69); 1 kg load cell with HX711 amplifier (G16/G17)</td></tr>
 </tbody>
 </table>
 </div>
@@ -87,7 +92,7 @@
 
 <section class="wrap block last">
 <h2>How we'll test it</h2>
-<p>An adjustable ramp from 5° to 25°, a cup of water on the tray, and a second IMU on the tray to measure its tilt directly. We set pass/fail targets before building anything:</p>
+<p>An adjustable ramp from 5° to 25° and a cup of water on the tray. The tray IMU built into the robot measures payload tilt directly. We set pass/fail targets before building anything:</p>
 <div class="table-wrap">
 <table>
 <thead><tr><th>TEST</th><th>TARGET</th></tr></thead>
